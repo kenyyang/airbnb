@@ -1,9 +1,10 @@
 import axios from "axios";
 
-class request {
-    constructor(baseUrl, timeout) {
+class myRequest {
+    constructor(baseURL, timeout) {
         this.instance = axios.create({
-            baseUrl,
+            // baseURL not baseUrl
+            baseURL,
             timeout
         })
         this.instance.interceptors.response.use(res => {
@@ -16,11 +17,11 @@ class request {
         return this.instance.request(config)
     }
     get(config) {
-        return this.instance.get({ ...config, method: 'get' })
+        return this.request({ ...config, method: 'get' })
     }
     post(config) {
-        return this.instance.post({ ...config, method: 'post' })
+        return this.request({ ...config, method: 'post' })
     }
 }
 
-export default new request("http://codercba.com:1888/airbnb/api/", 5000)
+export default new myRequest("http://codercba.com:1888/airbnb/api", 10000)

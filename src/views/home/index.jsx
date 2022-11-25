@@ -1,9 +1,37 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 
-const index = memo(() => {
+import HomeBanner from './c-cpns/home-banner'
+import { HomeWrapper } from './style'
+import { fetchHomeDataAction } from '@/store/modules/home'
+import SectionHeader from '@/components/section-header'
+import SectionRooms from '@/components/section-rooms'
+
+const Home = memo(() => {
+
+  // 从redux中获取数据
+  const { goodPriceInfo } = useSelector((state) => ({
+    goodPriceInfo: state.home.goodPriceInfo
+  }), shallowEqual)
+
+  // 派发异步事件，发送网络请求
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchHomeDataAction())
+  }, [dispatch])
+
   return (
-    <div>index</div>
+    <HomeWrapper>
+      <HomeBanner />
+      <div className='content'>
+        <div className='good-price'>
+          <SectionHeader title={goodPriceInfo.title} />
+          <SectionRooms goodPriceInfo={goodPriceInfo} />
+        </div>
+      </div>
+
+    </HomeWrapper>
   )
 })
 
-export default index
+export default Home
