@@ -3,7 +3,8 @@
 const theme = {
   color: {
     primaryColor: '#ff385c',
-    buttonColor: "#00848A"
+    buttonColor: "#00848A",
+    secondaryColor: "#00848A"
 
   },
   text: {

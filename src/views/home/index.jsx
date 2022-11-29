@@ -4,14 +4,16 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import HomeBanner from './c-cpns/home-banner'
 import { HomeWrapper } from './style'
 import { fetchHomeDataAction } from '@/store/modules/home'
-import SectionHeader from '@/components/section-header'
-import SectionRooms from '@/components/section-rooms'
+import HomeSection from './c-cpns/home-section-v1'
+import HomeSectionV2 from './c-cpns/home-section-v2'
 
 const Home = memo(() => {
 
   // 从redux中获取数据
-  const { goodPriceInfo } = useSelector((state) => ({
-    goodPriceInfo: state.home.goodPriceInfo
+  const { goodPriceInfo, highScoreInfo, discountInfo } = useSelector((state) => ({
+    goodPriceInfo: state.home.goodPriceInfo,
+    highScoreInfo: state.home.highScoreInfo,
+    discountInfo: state.home.discountInfo
   }), shallowEqual)
 
   // 派发异步事件，发送网络请求
@@ -24,10 +26,10 @@ const Home = memo(() => {
     <HomeWrapper>
       <HomeBanner />
       <div className='content'>
-        <div className='good-price'>
-          <SectionHeader title={goodPriceInfo.title} />
-          <SectionRooms goodPriceInfo={goodPriceInfo} />
-        </div>
+        {/* 折扣数据 */}
+        <HomeSectionV2 discountInfo={discountInfo} />
+        <HomeSection infoData={goodPriceInfo} />
+        <HomeSection infoData={highScoreInfo} />
       </div>
 
     </HomeWrapper>
