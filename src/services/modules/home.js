@@ -17,3 +17,19 @@ export function getHomeDiscountData() {
         url: "/home/discount"
     })
 }
+export function getHomeHotRecommendData() {
+    return myRequest.get({
+        url: "/home/hotrecommenddest"
+    })
+}
+
+export function getHomeLongForData() {
+    return myRequest.get({
+        url: "/home/longfor"
+    })
+}
+export function getHomePlusData() {
+    return myRequest.get({
+        url: "/home/plus"
+    })
+}
