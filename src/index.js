@@ -13,13 +13,13 @@ import "@/assets/css/common.css"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Suspense fallback="loading....">
-        <Provider store={store}>
+    <Provider store={store}>
+        <Suspense fallback="loading....">
             <ThemeProvider theme={theme}>
                 <HashRouter>
                     <APP />
                 </HashRouter>
             </ThemeProvider>
-        </Provider>
-    </Suspense>
+        </Suspense>
+    </Provider>
 );

@@ -9,7 +9,7 @@ const EntireFilter = memo(() => {
     function itemClickHandle(item) {
         const newItems = [...selectItems]
         if (newItems.includes(item)) {
-            const filterIndex = newItems.findIndex(filterItem => filterItem == item)
+            const filterIndex = newItems.findIndex(filterItem => filterItem === item)
             newItems.splice(filterIndex, 1)
         } else {
             newItems.push(item)
